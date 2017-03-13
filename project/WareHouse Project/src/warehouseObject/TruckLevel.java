@@ -6,10 +6,10 @@ public class TruckLevel {
 	private ArrayList<SpecialPallet> levelRight = new ArrayList<>(2);
 	public TruckLevel (SpecialPallet one, SpecialPallet two, SpecialPallet three, SpecialPallet four)
 	{
-		levelLeft.add(one);
-		levelLeft.add(two);
-		levelRight.add(three);
-		levelRight.add(four);
+		levelRight.add(one);
+		levelRight.add(two);
+		levelLeft.add(three);
+		levelLeft.add(four);
 	}
 	public ArrayList getLeft()
 	{
