@@ -29,11 +29,11 @@ public class Sequencing {
 				}
 			}
 		}
-			
 		
 		SpecialPallet firstSpecial = new SpecialPallet(front.get(0), front.get(1),front.get(2), front.get(3), pickingId);
 		SpecialPallet secondSpecial = new SpecialPallet(rear.get(0), rear.get(1), rear.get(2), rear.get(3), pickingId);
 		
+		Loading.Load(secondSpecial, firstSpecial);
 	}
 
 
