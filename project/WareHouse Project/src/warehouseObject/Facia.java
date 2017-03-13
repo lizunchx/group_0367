@@ -12,4 +12,5 @@ public class Facia {
 		this.sku = sku;
 		this.front = front;
 	}
+	public String getFacia() {return sku;}
 }
