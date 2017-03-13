@@ -1,0 +1,82 @@
+---------------------------------------------------------------------------------------------------------------------------
+--------------------    CSC207 GROUP PROJECT: WAREHOUSE -------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+This document will list any kinds of additions, ammendments, deletions and rationales behind setting up project and classes. 
+Each editor should write their name next to each of the edits. 
+Each edit should have a rationale and description of where edit was done. To reduce bugs. 
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+Setting up the project - Done by: Sibtain
+-----------------------------------------
+ - Built a folder for the project
+ - Project separated into two packages, one for the warehouse classes, one for the objects being used in the warehouse. 
+ - Each warehouse object will have a class and be placed in the warehouseobjects package
+
+Creating classes in the warehouseobjects package - Done by: Sibtain
+-------------------------------------------------------------------
+ALL SKU IS KEPT IN STRING AS NO MATHEMATICAL PROCESSING IS DONE ON THEM
+ - Minivan class created with constructor and variables. 
+ - Facia is created with constructor and variables. 
+ - Pallet and Special pallet are created. Confused with how to implement queue. 
+ - Truck was split into Truck and Truck Level. The Truck Level is each level on the truck. Holds a 2D array where each Special
+Pallet is stored. The Truck is a flat array holding objects of Truck Level
+ - Forklift is created. Two parallel arrays are made. One array holds the SKU, the other array holds the Order Number. Each array
+is of size 8. A counter has been created to keep track of number of facia on the forklift. 
+
+Creating classes in the warehouse package - Done by: Sibtain
+-------------------------------------------------------------
+ - Orders class has been created. Private variables have been created to store the values for colour, model and SKUs. A hashmap
+was created to keep track of all the pickingIDs and their corresponding objects. Each pickingID is uniquely generated and if a similar
+value is found, it is taken care of. 
+ - Class called InputOutput.java created. The class allows the other classes to extend this class and use the methods in order
+have constant methods for input and output for files. As multiple classes will use input and output thus it makes sense to create a class
+where other classes can extend this class so that input and output methods will be used. An object of this class can be created in the other
+classes so that input and output can be easily done. 
+ - Package for warehouseObjects has been changed to warehouseObject due to issues in Eclipse. 
+ - Class created for reserve room
+ - Class created for floor of the warehouse. Idea for tree. Need help implementing. 
+
+Fixed bugs in Orders.Java - Done by: Zun
+-------------------------------------------------------------
+ - Fixed where variable declaration results in repetitive instantiation of the static hashmap that erases previous data within it.
+ - Fixed where Orders objects are placed in the same location within hashmap (thus overwriting each other) when identical pickingIDs
+   are generated with Orders that have the same SKUs. A while loop is added to check and guarantee that a unique pickingID key for
+   the hashmap is created.
+ - Restructured createHashLocation() to remove redundant if/else statements.
+
+Modified Orders.Java, implemented Picking.java - Done by: Zun
+-------------------------------------------------------------
+ - Orders now has a linked hash map that is ordered
+ - added a few getters for Picking.java's use
+ - Implemented scheduleForPicking which schedules a picking even when there are 4 orders
+ - Implemented Picking.Java to return a list of SKU numbers for the 4 pairs of fascia from orders (some bug exists right now)
+
+Finished Implementing picking.java - Done by: Zun
+-------------------------------------------------------------
+ - Picking can now extract SKUs from 4 orders received and save them to a list in front -> back -> front -> back order, from 1st pair of fascia to the last in orders.
+ - Implemented a method that returns this list, intended to be used for sending the list of SKUs to the generic software.
+
+Reworked Orders.java and Picking.java - Done by: Zun
+ - Facelifted Orders.java to simplify the code. Removed redundant/false hashmaps and pickingID generation. Now picking request ID is generated in Picking.java
+ - Facelifted Picking.java as well for simplicity. Now, when 4 orders are entered into the system, Orders' Orders' list will be cleared so it is ready to accumulate
+   another set of 4 orders before scheduling a picking event.
+
+Implemented incomplete Replenishing.java - Done by: Usman
+-------------------------------------------------------------
+ - Created two methods for Replenishing.java: one called checkStock that checks the amount of fascia on the floor, and the others called replenish that removed 25 of that type of fascia from the reserve room. Also adds that fascia SKU to the static variable resupplierRecord which records, in order the resupplied fascia.
+
+- Need to d: find a way to edit Replenishing so that the fascia is added to the pick faces.
+
+Finished interface remove.java - Done by: Usman
+-------------------------------------------------------------
+ - Created a interface called remove.java that will notify removals of a specific fascia on the Floor and can also be used for the ReserveRoom.java.
+- FloorStorage.java and ReserveRoom.java implement this interface
+- to do: implement the methods in each of the classes
+
+Finalized implementation of Orders.java - Done by : Zun
+-------------------------------------------------------------
+ - Implemented file reading and translation table function, where an order's colour and model can now be translated into SKUs and used for pikcing.
+ - Implemented exception that is thrown when an invalid colour/model is entered from order.
+ - Added InvalidInputException exception class
+ - Fixed bugs in InputOutput.java so file reading functions correctly now.
