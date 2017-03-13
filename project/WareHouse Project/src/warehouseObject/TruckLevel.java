@@ -1,36 +1,24 @@
 package warehouseObject;
-
+import java.util.ArrayList;
 public class TruckLevel {
-private SpecialPallet[][] levelFill = new SpecialPallet[2][2];
-	
-	public TruckLevel (SpecialPallet s, boolean front)
+
+	private ArrayList<SpecialPallet> levelLeft = new ArrayList<>(2);
+	private ArrayList<SpecialPallet> levelRight = new ArrayList<>(2);
+	public TruckLevel (SpecialPallet one, SpecialPallet two, SpecialPallet three, SpecialPallet four)
 	{
-		if (front)
-		{
-			if (levelFill[0][0].equals(null))
-			{
-				levelFill[0][0] = s;
-				
-			}
-			else 
-			{
-				levelFill[0][1] = s;
-				
-			}
-		}
-		else
-		{
-			if (levelFill[1][0].equals(null))
-			{
-				levelFill[1][0] = s;
-				
-			}
-			else 
-			{
-				levelFill[1][1] = s;
-				
-			}
-		}
+		levelLeft.add(one);
+		levelLeft.add(two);
+		levelRight.add(three);
+		levelRight.add(four);
 	}
+	public ArrayList getLeft()
+	{
+		return levelLeft;
+	}
+	public ArrayList getRight()
+	{
+		return levelRight;
+	}
+
 	
 }
