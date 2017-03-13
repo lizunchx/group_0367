@@ -34,7 +34,7 @@ have constant methods for input and output for files. As multiple classes will u
 where other classes can extend this class so that input and output methods will be used. An object of this class can be created in the other
 classes so that input and output can be easily done. 
  - Package for warehouseObjects has been changed to warehouseObject due to issues in Eclipse. 
- - Class created for reserve room
+ - Class created for reserve room: The setup was done with a HashMap that contains the Fascia object and the number of Fascia remaining. 
  - Class created for floor of the warehouse. Idea for tree. Need help implementing. 
 
 Fixed bugs in Orders.Java - Done by: Zun
@@ -80,3 +80,30 @@ Finalized implementation of Orders.java - Done by : Zun
  - Implemented exception that is thrown when an invalid colour/model is entered from order.
  - Added InvalidInputException exception class
  - Fixed bugs in InputOutput.java so file reading functions correctly now.
+ 
+Created the setup for Truck.Java and TruckLevel.java - Done by :Sibtain & Zun
+------------------------------------------------------------------------------
+ - In Truck.java created a stack in order to keep track of all the pallets placed
+   in the truck. The Stack allows the pallets to be put into a LIFO setup so that each
+   pallet comes out in a backward order. Eacg part of the stack holds a TruckLevel object. 
+ - In the TruckLevel.java, created two ArrayLists of size 2. Each ArrayList holds a 
+   specific picking ID, ie: holding 2 pallets per ArrayList. 
+   
+Implementation of the Sequencing.java & Loading.java - Done by: Sibtain & Zun
+-------------------------------------------------------------------------------
+ - In sequencing.java, a set of 8 fascia received from pickers are compared against the
+   SKU list genereated by picking (the one that is sent into the generic software for
+   pikcing in the first place), and place them onto two special pallats in the order that
+   the orders came in originally. A RuntimeException is thrown when a received Fascia's sku
+   does not appear on the sku list (picker picked the wrong fascia), corner case still 
+   exist, will fix later.
+   
+ - In Loading.java, take in 2 special pallets, checks if there are 4 pallets, and adds them 
+   to a truck level if true. Checks if all levels of the truck are filled, creates new truck
+   for further loading if true.
+
+Implementation of FloorStorage.java and PickerDisplay.java - Done by: Sibtain
+-------------------------------------------------------------------
+ - Restructuring of the data structure for the floor storage setup. Using an arraylist 
+ with algorithms to change from SKU to location on the floor and back. Changed constructor so that the constructor works for the new InputOutput setup. Also the floorstructure can initialize its intial status if given the intitial status file. 
+ - Created a GUI with the PickerDisplay.java so that a window can display the next location for picking a fascia for the pickers on the floor. 

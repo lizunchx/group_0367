@@ -13,6 +13,9 @@ public class Loading {
 	private static ArrayList<Truck> trucks = new ArrayList<>();
 
 	public static void Load (SpecialPallet rear, SpecialPallet front) {
+		palletCounter = palletCounter + 2;
+		interim.add(rear);
+		interim.add(front);
 		if ((palletCounter == 4) && (currentTruckLevel < 11)) {
 			if (trucks.size() == 0) {
 				trucks.add(new Truck());
@@ -26,9 +29,7 @@ public class Loading {
 			getOnTruck(trucks.get(trucks.size() - 1));
 			palletCounter = 0;
 		}
-		interim.add(rear);
-		interim.add(front);
-		palletCounter = palletCounter + 2;
+		
 	}
 
 	public static void getOnTruck(Truck t)
